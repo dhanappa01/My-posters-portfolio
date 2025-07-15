@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonu's Creative Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 255, 255, 0.3);
+    }
+    .logo {
+      font-size: 1.5rem;
+      color: #00f0ff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .logo i {
+      font-size: 1.8rem;
+    }
+    .toggle-menu {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+      transform: perspective(500px) rotateY(10deg);
+      transition: transform 0.5s ease;
+    }
+    .toggle-menu:hover {
+      transform: perspective(500px) rotateY(-10deg);
+    }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+      animation: menuFade 0.5s ease forwards;
+    }
+    .nav-links a {
+      color: #00f0ff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      transform: perspective(300px) rotateY(5deg);
+      transition: transform 0.3s ease;
+    }
+    .nav-links a:hover {
+      transform: perspective(300px) rotateY(-5deg) scale(1.1);
+    }
+    .show-menu {
+      display: flex;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes menuFade {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+ .profile-image:hover{
+      transform: scale(1.05) rotateZ(1deg);
+      box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
+    }
+    .profile-image {
+      width: 150px;
+      height: 300px;
+      border-radius: 150px;
+      border: 3px solid #00f0ff;
+      object-fit: cover;
+      margin: 1rem auto 0.5rem;
+      display: block;
+      background: #333;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: all 1s ease;
+    }
+    .profile-image.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #00f0ff;
+      text-shadow: 2px 2px 10px rgba(0, 240, 255, 0.6);
+    }
+    .tagline {
+      margin-top: 0.5rem;
+      font-style: italic;
+      font-size: 1rem;
+      color: #ccc;
+    }
+    .section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-in-out;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .about-section {
+      padding: 2rem;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .about-section h2 {
+      color: #00f0ff;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+    .about-section p {
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #ddd;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05) rotateZ(4deg);
+      box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
+    }
+    .contact-section {
+      text-align: center;
+      padding: 2rem;
+      background-color: #111;
+    }
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .contact-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    .contact-links a:hover {
+      color: #00f0ff;
+    }
+    .footer {
+      text-align: center;
+      background: #000;
+      padding: 1rem;
+      color: #aaa;
+    }
+    .insta-btn, .whatsapp-btn {
+      margin-top: 1rem;
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.7);
+    }
+    .insta-btn {
+      background: #E1306C;
+      box-shadow: 0 0 15px rgba(225, 48, 108, 0.7);
+    }
+    .insta-btn:hover {
+      background: #c81e5d;
+    }
+    .whatsapp-btn:hover {
+      background: #1ebd5f;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <i class="fas fa-star"></i> Sonu ✨
+    </div>
+    <div class="toggle-menu" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>  <header>
+    <img src="dhanappa.jpg" alt="Sonu's Photo" class="profile-image" id="profileImage">
+    <h1>Sonu's Creative Poster Portfolio</h1>
+    <p class="tagline">Modern | Eye-catching | Futuristic Designs 🚀🎨🔥</p>
+  </header>  <section class="about-section section" id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm Sonu Marathe, a passionate graphic designer based in Maharashtra. I specialize in futuristic poster design that grabs attention and makes your brand stand out. Whether you're promoting your gym, salon, bakery, or product launch – I’ve got the creativity to make it pop! 💡✨🎯
+    </p>
+  </section>  <section class="gallery section" id="gallery">
+    <img src="poster1.jpg" alt="Poster 1">
+    <img src="poster2.jpg" alt="Poster 2">
+    <img src="poster3.jpg" alt="Poster 3">
+    <img src="poster4.jpg" alt="Poster 4">
+    <img src="poster5.jpg" alt="Poster 5">
+    <img src="poster6.jpg" alt="Poster 6">
+    <img src="poster7.jpg" alt="Poster 7">
+    <img src="poster8.jpg" alt="Poster 8">
+  </section>  <section class="contact-section section" id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-links">
+      <a href="mailto:sonumarathe6622@gmail.com"><i class="fas fa-envelope"></i> sonumarathe6622@gmail.com</a>
+      <a href="tel:+918010191810"><i class="fas fa-phone"></i> 8010191810</a>
+      <a class="whatsapp-btn" href="https://wa.me/919113977674" target="_blank"><i class="fab fa-whatsapp"></i> Message Me on WhatsApp</a>
+      <a class="insta-btn" href="https://www.instagram.com/poster_waves6622" target="_blank">DM Me on Instagram</a>
+    </div>
+  </section> 
+  <script>
+    // Animate profile photo on load
+    window.addEventListener('load', () => {
+      document.getElementById('profileImage').classList.add('visible');
+    });
+
+    // Scroll-based animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Toggle 3D nav menu
+    function toggleMenu() {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('show-menu');
+    }
+  </script></body>
+</html>
